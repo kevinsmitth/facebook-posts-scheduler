@@ -28,7 +28,7 @@ cp .env.example .env
 ```
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Aguarde alguns segundos para o MySQL estar pronto, então acesse a aplicação:
@@ -59,13 +59,13 @@ O sistema inclui um **scheduler automático** que roda via Supervisor:
 **Verificar status dos processos:**
 
 ```bash
-docker-compose exec backend supervisorctl status
+docker compose exec backend supervisorctl status
 ```
 
 **Ver logs do scheduler:**
 
 ```bash
-docker-compose exec backend tail -f /var/log/laravel-schedule.log
+docker compose exec backend tail -f /var/log/laravel-schedule.log
 ```
 
 ## 📝 Documentação da API com Swagger
@@ -110,32 +110,32 @@ O sistema utiliza **MySQL 8.0** com as seguintes tabelas principais:
 **Acessar container:**
 
 ```bash
-docker-compose exec backend bash
+docker compose exec backend bash
 ```
 
 **Executar migrations:**
 
 ```bash
-docker-compose exec backend php artisan migrate
+docker compose exec backend php artisan migrate
 ```
 
 **Limpar cache:**
 
 ```bash
-docker-compose exec backend php artisan cache:clear
-docker-compose exec backend php artisan config:clear
+docker compose exec backend php artisan cache:clear
+docker compose exec backend php artisan config:clear
 ```
 
 **Tinker (console interativo):**
 
 ```bash
-docker-compose exec backend php artisan tinker
+docker compose exec backend php artisan tinker
 ```
 
 **Ver logs do Laravel:**
 
 ```bash
-docker-compose exec backend tail -f storage/logs/laravel.log
+docker compose exec backend tail -f storage/logs/laravel.log
 ```
 
 ## 🛠️ Construído com
@@ -168,7 +168,7 @@ backend/
 ├── storage/                # Logs e arquivos
 ├── Dockerfile              # Container do Laravel
 ├── supervisord.conf        # Configuração do Supervisor
-└── docker-compose.yml     # Orquestração dos containers
+└── docker compose.yml     # Orquestração dos containers
 ```
 
 ## 🚀 Deploy

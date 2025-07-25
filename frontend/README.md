@@ -24,7 +24,7 @@ cp .env.example .env
 ```
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Aguarde alguns segundos para o Vite inicializar, então acesse a aplicação:
@@ -98,19 +98,19 @@ npm run format
 **Acessar container:**
 
 ```bash
-docker-compose exec frontend sh
+docker compose exec frontend sh
 ```
 
 **Ver logs do Vite:**
 
 ```bash
-docker-compose exec frontend npm run dev
+docker compose exec frontend npm run dev
 ```
 
 **Rebuild container:**
 
 ```bash
-docker-compose build --no-cache frontend
+docker compose build --no-cache frontend
 ```
 
 ## 🏗️ Construído com

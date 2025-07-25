@@ -38,7 +38,7 @@ cp .env.example .env
 **4. Inicie os containers Docker**
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 **5. Aguarde a inicialização completa dos serviços**
@@ -135,7 +135,7 @@ FACEBOOK_REDIRECT_URI=http://localhost:8080/auth/facebook/callback
 Após configurar as chaves, você pode testar se estão funcionando:
 
 ```bash
-docker-compose exec backend php artisan tinker
+docker compose exec backend php artisan tinker
 ```
 
 Dentro do tinker, execute:
@@ -204,64 +204,64 @@ O projeto utiliza os seguintes serviços:
 **Ver logs do scheduler:**
 
 ```bash
-docker-compose exec backend tail -f /var/log/laravel-schedule.log
+docker compose exec backend tail -f /var/log/laravel-schedule.log
 ```
 
 **Ver logs do servidor:**
 
 ```bash
-docker-compose exec backend tail -f /var/log/laravel-server.log
+docker compose exec backend tail -f /var/log/laravel-server.log
 ```
 
 **Build do frontend para produção:**
 
 ```bash
-docker-compose exec frontend npm run build
+docker compose exec frontend npm run build
 ```
 
 **Verificar tipos TypeScript:**
 
 ```bash
-docker-compose exec frontend npm run type-check
+docker compose exec frontend npm run type-check
 ```
 
 **Code quality (linting e formatação):**
 
 ```bash
-docker-compose exec frontend npm run lint
-docker-compose exec frontend npm run format
+docker compose exec frontend npm run lint
+docker compose exec frontend npm run format
 ```
 
 **Acessar container do backend:**
 
 ```bash
-docker-compose exec backend bash
+docker compose exec backend bash
 ```
 
 **Acessar container do frontend:**
 
 ```bash
-docker-compose exec frontend sh
+docker compose exec frontend sh
 ```
 
 **Verificar status do supervisor:**
 
 ```bash
-docker-compose exec backend supervisorctl status
+docker compose exec backend supervisorctl status
 ```
 
 **Rebuild containers:**
 
 ```bash
-docker-compose down
-docker-compose build --no-cache
-docker-compose up -d
+docker compose down
+docker compose build --no-cache
+docker compose up -d
 ```
 
 **Parar todos os serviços:**
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ## 🛠️ Construído com
@@ -302,6 +302,6 @@ Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para d
 
 Para dúvidas ou problemas:
 
-1. Verifique se todos os containers estão rodando: `docker-compose ps`
+1. Verifique se todos os containers estão rodando: `docker compose ps`
 2. Consulte os logs dos serviços
 3. Verifique se as chaves do Facebook estão configuradas corretamente
