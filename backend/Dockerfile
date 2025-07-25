@@ -5,17 +5,17 @@ ARG APP_DIR=/var/www/html
 ARG REDIS_LIB_VERSION=5.3.7
 
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
-    apt-utils \
-    supervisor \
-    zlib1g-dev \
-    libzip-dev \
-    unzip \
-    libpng-dev \
-    libpq-dev \
-    libxml2-dev \
-    curl \
-    nano \
-    git
+apt-utils \
+supervisor \
+zlib1g-dev \
+libzip-dev \
+unzip \
+libpng-dev \
+libpq-dev \
+libxml2-dev \
+curl \
+nano \
+git
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql pgsql session xml zip iconv simplexml pcntl gd fileinfo
 
@@ -31,14 +31,11 @@ COPY --chown=www-data:www-data . .
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN cp .env.example .env || true
-
-RUN php artisan key:generate --force
-
 RUN chown -R www-data:www-data $APP_DIR && \
-    chmod -R 755 $APP_DIR/storage $APP_DIR/bootstrap/cache
+chmod -R 755 $APP_DIR/storage $APP_DIR/bootstrap/cache
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80
 
-CMD ["sh", "-c", "php artisan migrate --force && php artisan config:cache && /usr/bin/supervisord -c /etc/supervisor/supervisord.conf"]
+CMD ["sh", "-c", "if [ ! -f .env ]; then cp .env.example .env; fi && if ! grep -q '^APP_KEY=base64:' .env; then php artisan key:generate --force; fi && php artisan migrate --force && php artisan config:cache && /usr/bin/supervisord -c /etc/supervisor/supervisord.conf"]
